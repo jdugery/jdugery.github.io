@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Pepper Varieties</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#111;
+color:white;
+text-align:center;
+}
+
+button{
+padding:10px 20px;
+margin:5px;
+border:none;
+background:#b30000;
+color:white;
+cursor:pointer;
+}
+
+.pepper{
+background:#222;
+padding:15px;
+margin:10px auto;
+width:300px;
+border-radius:8px;
+}
+
+a{
+color:#ff4d4d;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Pepper Varieties</h1>
+
+<div>
+
+<button onclick="filterPepper('all')">All</button>
+<button onclick="filterPepper('annuum')">Annuum</button>
+<button onclick="filterPepper('chinense')">Chinense</button>
+<button onclick="filterPepper('baccatum')">Baccatum</button>
+<button onclick="filterPepper('frutescens')">Frutescens</button>
+<button onclick="filterPepper('pubescens')">Pubescens</button>
+
+</div>
+
+<br>
+
+<div class="pepper annuum">
+<a href="jalapeno.html">Jalapeño</a>
+</div>
+
+<div class="pepper chinense">
+<a href="chocolate-habanero.html">Chocolate Habanero</a>
+</div>
+
+<div class="pepper chinense">
+<a href="scotch-bonnet.html">Scotch Bonnet</a>
+</div>
+
+<div class="pepper baccatum">
+<a href="aji-lemon.html">Aji Lemon</a>
+</div>
+
+<div class="pepper frutescens">
+<a href="tabasco.html">Tabasco</a>
+</div>
+
+<div class="pepper pubescens">
+<a href="rocoto.html">Rocoto</a>
+</div>
+
+<script>
+
+function filterPepper(type){
+
+let peppers = document.querySelectorAll(".pepper");
+
+peppers.forEach(function(p){
+
+if(type === "all"){
+p.style.display = "block";
+}
+
+else if(p.classList.contains(type)){
+p.style.display = "block";
+}
+
+else{
+p.style.display = "none";
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
