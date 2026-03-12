@@ -44,9 +44,10 @@
       justify-content: center;
       text-align: center;
       padding: 80px 20px;
-      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.7)),
-<img src="pepper_bowl_1.jpg">
-        }
+      background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.7)),
+        url("pepper_bowl_1.jpg") center/cover no-repeat;
+    }
 
     .hero-content {
       max-width: 850px;
@@ -65,25 +66,30 @@
       max-width: 700px;
     }
 
-   .btn{
-display:inline-block;
-padding:20px 50px;
-background:#c1121f;
-color:white;
-text-decoration:underline;
-font-size:28px;
-border-radius:12px;
-font-weight:bold;
-}
+    .btn {
+      display: inline-block;
+      padding: 20px 50px;
+      background: #c1121f;
+      color: white;
+      text-decoration: underline;
+      font-size: 28px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
 
-.btn:hover{
-background:#e01e2d;
-}
+    .btn:hover {
+      background: #e01e2d;
     }
 
     .btn-primary {
+      display: inline-block;
+      padding: 14px 24px;
       background: #c1121f;
       color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
     }
 
     .btn-primary:hover {
@@ -91,14 +97,24 @@ background:#e01e2d;
     }
 
     .btn-secondary {
+      display: inline-block;
+      padding: 14px 24px;
       background: transparent;
       color: white;
       border: 2px solid white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
     }
 
     .btn-secondary:hover {
       background: white;
       color: #111;
+    }
+
+    .hero-buttons a {
+      margin: 10px;
     }
 
     .section {
@@ -174,6 +190,15 @@ background:#e01e2d;
       margin-bottom: 18px;
     }
 
+    .about-text a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .about-text a:hover {
+      color: #ff4d4d;
+    }
+
     .cta {
       text-align: center;
       background: #181818;
@@ -247,22 +272,22 @@ background:#e01e2d;
     <div class="card-grid">
       <div class="card">
         <h3>Chocolate Habanero</h3>
-        <p>Dark color, rich flavor, and strong heat. </p>
+        <p>Dark color, rich flavor, and strong heat.</p>
       </div>
 
       <div class="card">
         <h3>Scotch Bonnet</h3>
-        <p>Classic fruity chinense flavor orginiating in the Carribbean with similar burn to a habanero. Typically ranging from 100-350k SHU.</p>
+        <p>Classic fruity chinense flavor originating in the Caribbean, with similar burn to a habanero. Typically ranging from 100–350k SHU.</p>
       </div>
 
       <div class="card">
         <h3>Ghost Pepper</h3>
-        <p>Also known as bhut jolokia, this Bhutanese cultivar once claimed the throne to the world's hottest pepper, reaching over 1M SHU.</p>
+        <p>Also known as bhut jolokia, this cultivar once claimed the throne as the world’s hottest pepper, reaching over 1M SHU.</p>
       </div>
 
       <div class="card">
         <h3>Rocoto</h3>
-        <p>A thick walled Peruvian pepper, native to the Andes. Rarely found elsewhere. Moderate heat - around 30-100k SHU.</p>
+        <p>A thick-walled Peruvian pepper native to the Andes. Rarely found elsewhere. Moderate heat, around 30–100k SHU.</p>
       </div>
     </div>
   </section>
@@ -272,16 +297,15 @@ background:#e01e2d;
 
     <div class="about-text">
       <h2>About the Grow Op</h2>
-      <p>Red Hot Philly Peppers is a local farm specializing in peppers, ranging from mild to scorching and as common as a jalapeño to as niche as a purple gator jigsaw.</p>
-    
-<a href="varieties.html">Explore the Collection</a>
+      <p>Red Hot Philly Peppers is a local farm specializing in peppers, ranging from mild to scorching and from as common as a jalapeño to as niche as a purple gator jigsaw.</p>
+      <a href="varieties.html">Explore the Collection</a>
     </div>
   </section>
 
   <section class="cta">
     <h2>Browse All Varieties</h2>
     <p>See the full list by species and click into each pepper individually.</p>
-<a href="varieties.html" class="btn">Explore the Collection</a>
+    <a href="varieties.html" class="btn">Explore the Collection</a>
   </section>
 
   <footer>
