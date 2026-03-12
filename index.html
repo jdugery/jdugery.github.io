@@ -1,129 +1,286 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Red Hot Philly Peppers</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Hot Philly Peppers</title>
 
-  
-<style>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body{
-font-family: Arial;
-margin:0;
-background:#111;
-color:white;
-text-align:center;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      line-height: 1.5;
+    }
 
-header{
-background:#b30000;
-padding:40px;
-font-size:40px;
-font-weight:bold;
-}
+    nav {
+      background: #0a0a0a;
+      padding: 18px 24px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
 
-.section{
-padding:60px 20px;
-}
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 18px;
+      font-size: 17px;
+      font-weight: 600;
+    }
 
-.peppers{
-display:flex;
-justify-content:center;
-gap:40px;
-flex-wrap:wrap;
-}
+    nav a:hover {
+      color: #ff4d4d;
+    }
 
-.card{
-background:#222;
-padding:20px;
-border-radius:10px;
-width:220px;
-}
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.7)),
+                  url("https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    }
 
-.card h3{
-color:#ff3b3b;
-}
+    .hero-content {
+      max-width: 850px;
+    }
 
-footer{
-background:#000;
-padding:30px;
-margin-top:40px;
-}
+    .hero h1 {
+      font-size: 58px;
+      margin: 0 0 18px;
+      letter-spacing: 1px;
+    }
 
-nav{
-background:#000;
-padding:15px;
-}
+    .hero p {
+      font-size: 22px;
+      color: #f0f0f0;
+      margin: 0 auto 30px;
+      max-width: 700px;
+    }
 
-nav a{
-color:white;
-margin:0 15px;
-font-size:18px;
-text-decoration:none;
-}
+    .hero-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+    }
 
-nav a:hover{
-color:#ff3b3b;
-}
-  
-</style>
+    .btn-primary {
+      background: #c1121f;
+      color: white;
+    }
 
+    .btn-primary:hover {
+      background: #e01e2d;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #111;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 20px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .section-subtext {
+      text-align: center;
+      color: #ccc;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 18px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #1b1b1b;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 26px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #ff5c5c;
+      font-size: 24px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #ddd;
+      font-size: 16px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .about-text h2 {
+      text-align: left;
+      margin-top: 0;
+    }
+
+    .about-text p {
+      color: #ddd;
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+
+    .cta {
+      text-align: center;
+      background: #181818;
+      border-top: 1px solid #252525;
+      border-bottom: 1px solid #252525;
+      padding: 70px 20px;
+    }
+
+    .cta h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #ccc;
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #aaa;
+      background: #0b0b0b;
+      font-size: 15px;
+    }
+
+    @media (max-width: 850px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-text h2 {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="varieties.html">Varieties</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<a href="index.html">Home</a>
-<a href="varieties.html">Varieties</a>
-<a href="gallery.html">Gallery</a>
-<a href="contact.html">Contact</a>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Red Hot Philly Peppers</h1>
+      <p>Specialty peppers, rare varieties, and serious heat — grown with obsession in Philadelphia.</p>
+      <div class="hero-buttons">
+        <a href="varieties.html" class="btn-primary">View Varieties</a>
+        <a href="contact.html" class="btn-secondary">Contact</a>
+      </div>
+    </div>
+  </section>
 
-</nav>
-  
-<header>
-Red Hot Philly Peppers 🌶
-</header>
+  <section class="section">
+    <h2>Featured Varieties</h2>
+    <p class="section-subtext">A few of the peppers currently featured on the site.</p>
 
-<div class="section">
+    <div class="card-grid">
+      <div class="card">
+        <h3>Chocolate Habanero</h3>
+        <p>Dark color, rich flavor, and real heat.</p>
+      </div>
 
-<h2>Small Batch Superhot Peppers</h2>
+      <div class="card">
+        <h3>Scotch Bonnet</h3>
+        <p>Classic fruity chinense flavor with strong burn.</p>
+      </div>
 
-<p>Grown locally in Philadelphia.</p>
+      <div class="card">
+        <h3>Ghost Pepper</h3>
+        <p>Legendary heat with a clean, aggressive profile.</p>
+      </div>
 
-</div>
+      <div class="card">
+        <h3>Rocoto</h3>
+        <p>Thick walls, black seeds, and a unique pubescens look.</p>
+      </div>
+    </div>
+  </section>
 
-<div class="section peppers">
+  <section class="section about">
+    <img src="https://images.unsplash.com/photo-1583663848850-46af132dc08e?auto=format&fit=crop&w=1200&q=80" alt="Peppers" />
 
-<div class="card">
-<h3>Chocolate Habanero</h3>
-<p>Smoky flavor with serious heat.</p>
-</div>
+    <div class="about-text">
+      <h2>About the Grow</h2>
+      <p>Red Hot Philly Peppers is focused on growing standout pepper varieties with strong flavor, visual appeal, and real heat.</p>
+      <p>The goal is simple: build a clean catalog of what’s being grown, document the varieties, and make the site feel like a real brand instead of a basic page.</p>
+      <a href="varieties.html" class="btn-primary">Explore the Collection</a>
+    </div>
+  </section>
 
-<div class="card">
-<h3>Scotch Bonnet</h3>
-<p>Classic Caribbean heat and sweetness.</p>
-</div>
+  <section class="cta">
+    <h2>Browse All Varieties</h2>
+    <p>See the full list by species and click into each pepper individually.</p>
+    <a href="varieties.html" class="btn-primary">Go to Varieties</a>
+  </section>
 
-<div class="card">
-<h3>Ghost Pepper</h3>
-<p>Extreme heat for serious chili heads.</p>
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>Contact</h2>
-
-<p>email: johnny@redhotphillypeppers.com</p>
-
-</div>
-
-<footer>
-
-Red Hot Philly Peppers
-
-</footer>
+  <footer>
+    © 2026 Red Hot Philly Peppers
+  </footer>
 
 </body>
 </html>
