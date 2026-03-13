@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Red Hot Philly Peppers</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      background: rgba(10,10,10,.95);
+      padding: 20px 24px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: .3px;
+      transition: color .2s ease;
+    }
+
+    nav a:hover {
+      color: #ff5c5c;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 70px 20px 30px;
+    }
+
+    .page-header h1 {
+      margin: 0 0 12px;
+      font-size: clamp(36px, 6vw, 54px);
+    }
+
+    .page-header p {
+      margin: 0 auto;
+      max-width: 700px;
+      color: #ccc;
+      font-size: 18px;
+    }
+
+    .gallery-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+    }
+
+    .gallery {
+      position: relative;
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,.3);
+    }
+
+    .gallery img {
+      display: block;
+      width: 100%;
+      height: 68vh;
+      object-fit: cover;
+      background: #0d0d0d;
+    }
+
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,.55);
+      color: white;
+      border: 1px solid rgba(255,255,255,.18);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .gallery-btn:hover {
+      background: rgba(0,0,0,.78);
+    }
+
+    .gallery-btn.left {
+      left: 18px;
+    }
+
+    .gallery-btn.right {
+      right: 18px;
+    }
+
+    .caption {
+      padding: 18px 22px;
+      border-top: 1px solid #262626;
+      color: #ddd;
+      font-size: 16px;
+      background: #151515;
+    }
+
+    .thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .thumbs img {
+      width: 100%;
+      height: 95px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      opacity: .72;
+      transition: opacity .2s ease, border-color .2s ease, transform .2s ease;
+      display: block;
+    }
+
+    .thumbs img:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .thumbs img.active {
+      opacity: 1;
+      border-color: #c1121f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: #aaa;
+      background: #0b0b0b;
+      font-size: 14px;
+      border-top: 1px solid #1e1e1e;
+    }
+
+    @media (max-width: 850px) {
+      .gallery img {
+        height: 52vh;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        margin: 0 12px;
+        font-size: 15px;
+      }
+
+      .gallery-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+      }
+
+      .thumbs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="varieties.html">Varieties</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="page-header">
+    <h1>Gallery</h1>
+    <p>A rotating collection of peppers, plants, pods, and photos from the grow.</p>
+  </section>
+
+  <section class="gallery-wrap">
+    <div class="gallery">
+      <button class="gallery-btn left" onclick="prevImage()">&#10094;</button>
+      <img id="mainImage" src="gallery1.jpg" alt="Gallery image" />
+      <button class="gallery-btn right" onclick="nextImage()">&#10095;</button>
+      <div class="caption" id="caption">Pepper photo 1</div>
+    </div>
+
+    <div class="thumbs" id="thumbnails"></div>
+  </section>
+
+  <footer>
+    © 2026 Red Hot Philly Peppers
+  </footer>
+
+  <script>
+    const images = [
+      {
+        src: "gallery1.jpg",
+        caption: "Pepper photo 1"
+      },
+      {
+        src: "gallery2.jpg",
+        caption: "Pepper photo 2"
+      },
+      {
+        src: "gallery3.jpg",
+        caption: "Pepper photo 3"
+      },
+      {
+        src: "gallery4.jpg",
+        caption: "Pepper photo 4"
+      },
+      {
+        src: "gallery5.jpg",
+        caption: "Pepper photo 5"
+      }
+    ];
+
+    let currentIndex = 0;
+
+    const mainImage = document.getElementById("mainImage");
+    const caption = document.getElementById("caption");
+    const thumbnails = document.getElementById("thumbnails");
+
+    function renderImage() {
+      mainImage.src = images[currentIndex].src;
+      caption.textContent = images[currentIndex].caption;
+
+      const thumbImages = thumbnails.querySelectorAll("img");
+      thumbImages.forEach((img, index) => {
+        img.classList.toggle("active", index === currentIndex);
+      });
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      renderImage();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      renderImage();
+    }
+
+    function buildThumbnails() {
+      images.forEach((image, index) => {
+        const thumb = document.createElement("img");
+        thumb.src = image.src;
+        thumb.alt = image.caption;
+        thumb.addEventListener("click", () => {
+          currentIndex = index;
+          renderImage();
+        });
+        thumbnails.appendChild(thumb);
+      });
+    }
+
+    buildThumbnails();
+    renderImage();
+  </script>
+
+</body>
+</html>
