@@ -1,93 +1,186 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Red Hot Philly Peppers</title>
 
-<title>Contact - Red Hot Philly Peppers</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+      color: white;
+      line-height: 1.5;
+    }
 
-body{
-font-family: Arial;
-margin:0;
-background:#111;
-color:white;
-text-align:center;
-}
+    nav {
+      background: #0a0a0a;
+      padding: 18px 24px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
 
-nav{
-background:#000;
-padding:15px;
-}
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 18px;
+      font-size: 17px;
+      font-weight: 600;
+    }
 
-nav a{
-color:white;
-margin:0 15px;
-font-size:18px;
-text-decoration:none;
-}
+    nav a:hover {
+      color: #ff4d4d;
+    }
 
-nav a:hover{
-color:#ff4d4d;
-}
+    .contact-section {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+    }
 
-.container{
-max-width:700px;
-margin:auto;
-padding:60px 20px;
-}
+    .contact-card {
+      width: 100%;
+      max-width: 760px;
+      background: #171717;
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 50px 40px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+    }
 
-h1{
-font-size:42px;
-margin-bottom:20px;
-}
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ff5c5c;
+      margin-bottom: 14px;
+    }
 
-p{
-font-size:18px;
-color:#ccc;
-}
+    h1 {
+      margin: 0 0 16px;
+      font-size: 56px;
+      line-height: 1.05;
+    }
 
-.contact-box{
-background:#222;
-padding:30px;
-border-radius:10px;
-margin-top:30px;
-}
+    .subtext {
+      margin: 0 auto 34px;
+      max-width: 560px;
+      color: #cfcfcf;
+      font-size: 20px;
+    }
 
-.email{
-font-size:22px;
-color:#ff4d4d;
-}
+    .contact-box {
+      background: #1f1f1f;
+      border: 1px solid #2d2d2d;
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-top: 10px;
+    }
 
-</style>
+    .contact-label {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #9f9f9f;
+      margin-bottom: 14px;
+    }
 
+    .email-link {
+      display: inline-block;
+      padding: 16px 24px;
+      background: #c1121f;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 28px;
+      font-weight: 700;
+      word-break: break-word;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .email-link:hover {
+      background: #e01e2d;
+      transform: translateY(-1px);
+    }
+
+    .contact-note {
+      margin-top: 18px;
+      color: #b8b8b8;
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      color: #888;
+      background: #0b0b0b;
+      font-size: 15px;
+      border-top: 1px solid #1f1f1f;
+    }
+
+    @media (max-width: 700px) {
+      .contact-card {
+        padding: 38px 22px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .subtext {
+        font-size: 18px;
+      }
+
+      .email-link {
+        font-size: 20px;
+        padding: 14px 18px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="varieties.html">Varieties</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<a href="index.html">Home</a>
-<a href="varieties.html">Varieties</a>
-<a href="gallery.html">Gallery</a>
-<a href="contact.html">Contact</a>
+  <section class="contact-section">
+    <div class="contact-card">
+      <div class="eyebrow">Get in Touch</div>
+      <h1>Contact</h1>
+      <p class="subtext">
+        Questions, comments, pepper inquiries, seed availability, or anything else —
+        reach out directly below.
+      </p>
 
-</nav>
+      <div class="contact-box">
+        <div class="contact-label">Email</div>
+        <a class="email-link" href="mailto:johnny@redhotphillypeppers.com">
+          johnny@redhotphillypeppers.com
+        </a>
+        <div class="contact-note">
+          We usually respond as soon as possible.
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="container">
-
-<h1>Contact</h1>
-
-<p>Questions, comments, concerns:</p>
-
-<div class="contact-box">
-
-<p>Email:</p>
-
-<p class="email"><a href="mailto:johnny@redhotphillypeppers.com">johnny@redhotphillypeppers.com</a></p>
-
-</div>
-
-</div>
+  <footer>
+    © 2026 Red Hot Philly Peppers
+  </footer>
 
 </body>
 </html>
