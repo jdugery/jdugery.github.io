@@ -60,31 +60,57 @@
     .section {
       max-width: 1150px;
       margin: 0 auto;
-      padding: 55px 20px 80px;
+      padding: 45px 20px 80px;
     }
 
-    .species-section {
-      margin-bottom: 55px;
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
     }
 
-    .species-heading {
-      font-size: 30px;
-      margin: 0 0 18px;
-      color: #ff5c5c;
-      border-left: 4px solid #c1121f;
-      padding-left: 14px;
+    .filter-btn {
+      background: #1b1b1b;
+      color: white;
+      border: 1px solid #2a2a2a;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
 
-    .species-subtext {
-      margin: 0 0 24px;
+    .filter-btn:hover {
+      border-color: #444;
+      color: #ff8a8a;
+    }
+
+    .filter-btn.active {
+      background: #c1121f;
+      border-color: #c1121f;
+      color: white;
+    }
+
+    .results-label {
+      text-align: center;
       color: #bbb;
       font-size: 16px;
+      margin-bottom: 28px;
     }
 
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 24px;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .card {
@@ -94,9 +120,10 @@
       padding: 24px;
       box-shadow: 0 8px 24px rgba(0,0,0,.25);
       transition: transform 0.15s ease, border-color 0.15s ease;
+      height: 100%;
     }
 
-    .card:hover {
+    .card-link:hover .card {
       transform: translateY(-3px);
       border-color: #3a3a3a;
     }
@@ -110,7 +137,7 @@
     .species-tag {
       display: inline-block;
       margin-top: 4px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       padding: 5px 10px;
       font-size: 12px;
       font-weight: 700;
@@ -120,10 +147,21 @@
       color: #ff6b6b;
     }
 
+    .spice-meter {
+      margin: 2px 0 12px;
+      font-size: 18px;
+      color: #ff3b30;
+      letter-spacing: 1px;
+    }
+
     .card p {
       margin: 0;
       color: #ddd;
       font-size: 15px;
+    }
+
+    .pepper-card.hidden {
+      display: none;
     }
 
     footer {
@@ -133,6 +171,7 @@
       background: #0b0b0b;
       font-size: 15px;
       border-top: 1px solid #1f1f1f;
+      margin-top: 70px;
     }
 
     @media (max-width: 850px) {
@@ -142,10 +181,6 @@
 
       .hero-small p {
         font-size: 17px;
-      }
-
-      .species-heading {
-        font-size: 26px;
       }
     }
   </style>
@@ -162,171 +197,290 @@
   <section class="hero-small">
     <h1>Pepper Varieties</h1>
     <p>
-      A growing catalog of peppers at Red Hot Philly Peppers, organized by species.
+      Browse the catalog by species and click any variety to open its own page.
     </p>
   </section>
 
   <section class="section">
 
-    <div class="species-section">
-      <h2 class="species-heading">Capsicum annuum</h2>
-      <p class="species-subtext">Classic garden peppers ranging from sweet to hot.</p>
-
-      <div class="card-grid">
-        <div class="card">
-          <h3>Heirloom Jalapeño</h3>
-          <div class="species-tag">Capsicum annuum</div>
-          <p>Traditional jalapeño with dependable production, thick walls, and classic medium heat.</p>
-        </div>
-
-        <div class="card">
-          <h3>Jalapeño LMT (RHPP Patented)</h3>
-          <div class="species-tag">Capsicum annuum</div>
-          <p>A signature RHPP variety - this jalapeño has been engineered for supermarket level size.</p>
-        </div>
-
-        <div class="card">
-          <h3>Poblano</h3>
-          <div class="species-tag">Capsicum annuum</div>
-          <p>Mild to spicy, depending on the pod. This rich-flavored pepper is commonly known as Ancho when dried.</p>
-        </div>
-
-        <div class="card">
-          <h3>Serrano</h3>
-          <div class="species-tag">Capsicum annuum</div>
-          <p>Bright, crisp, and hotter than a jalapeño with excellent fresh flavor.</p>
-        </div>
-
-        <div class="card">
-          <h3>Cayenne</h3>
-          <div class="species-tag">Capsicum annuum</div>
-          <p>Long, thin pepper known for sharp heat and excellent drying qualities. Popular as a powder.</p>
-        </div>
-
-        <div class="card">
-          <h3>California Wonder Sweet</h3>
-          <div class="species-tag">Capsicum annuum</div>
-          <p>Classic sweet bell pepper with thick walls, crisp texture, and reliable yields.</p>
-        </div>
-
-        <div class="card">
-          <h3>Red Marconi</h3>
-          <div class="species-tag">Capsicum annuum</div>
-          <p>Long Italian sweet pepper that is especially good for roasting and fresh eating.</p>
-        </div>
-      </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="annuum">Annuum</button>
+      <button class="filter-btn" data-filter="chinense">Chinense</button>
+      <button class="filter-btn" data-filter="baccatum">Baccatum</button>
+      <button class="filter-btn" data-filter="frutescens">Frutescens</button>
     </div>
 
-    <div class="species-section">
-      <h2 class="species-heading">Capsicum chinense</h2>
-      <p class="species-subtext">Aromatic, fruity peppers from low-heat rarities to brutal superhots.</p>
+    <div class="results-label" id="resultsLabel">Showing all varieties</div>
 
-      <div class="card-grid">
-        <div class="card">
-          <h3>Trinidad Perfume</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>Highly aromatic chinense with habanero-like flavor and almost no heat.</p>
-        </div>
+    <div class="card-grid">
 
-        <div class="card">
-          <h3>Naga Bubblegum</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>Superhot pepper known for extreme heat and distinctive color bleeding into the stem.</p>
-        </div>
-
-        <div class="card">
-          <h3>Pimenta da Dog</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>Rare chinense type with distinctive pod shape and strong heat.</p>
-        </div>
-
-        <div class="card">
-          <h3>Hallow's Eve</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>Dark ornamental superhot with dramatic appearance and serious heat. As the name implies, this is a spooky pepper.</p>
-        </div>
-
-        <div class="card">
-          <h3>Red Habanero</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>Classic habanero with fruity flavor, strong heat, and heavy production.</p>
-        </div>
-
-        <div class="card">
-          <h3>Orange Habanero</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>Bright citrusy flavor with the classic habanero burn.</p>
-        </div>
-
-        <div class="card">
-          <h3>Ghost</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>Also known as Bhut Jolokia, this pepper originating from northern India was once crowned the hottest in the world.</p>
-        </div>
-
-        <div class="card">
-          <h3>Peach Ghost</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>Peach-colored ghost type with floral notes and strong superhot intensity.</p>
-        </div>
-
-        <div class="card">
-          <h3>Trinidad Moruga Scorpion</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>A Carribbean landrace variety from the village of Moruga on the island of Trinidad, this heavy-hitting superhot packs brutal heat and fruity undertones.</p>
-        </div>
-
-        <div class="card">
-          <h3>Armageddon</h3>
-          <div class="species-tag">Capsicum chinense</div>
-          <p>As the name implies, an extremely hot modern superhot bred out of the UK for aggressive heat and bold flavor. This was the first superhot grown at the RHPP farm.</p>
-        </div>
+      <div class="pepper-card" data-species="annuum">
+        <a href="heirloom-jalapeno.html" class="card-link">
+          <div class="card">
+            <h3>Heirloom Jalapeño</h3>
+            <div class="species-tag">Capsicum annuum</div>
+            <div class="spice-meter">🌶🌶</div>
+            <p>Traditional jalapeño with dependable production, thick walls, and classic medium heat.</p>
+          </div>
+        </a>
       </div>
-    </div>
 
-    <div class="species-section">
-      <h2 class="species-heading">Capsicum baccatum</h2>
-      <p class="species-subtext">Distinctive, often fruity peppers with unique shapes and excellent flavor.</p>
-
-      <div class="card-grid">
-        <div class="card">
-          <h3>Brazilian Starfish</h3>
-          <div class="species-tag">Capsicum baccatum</div>
-          <p>Beautiful winged pepper resembling a starfish. Fruity flavor and mild to medium heat.</p>
-        </div>
-
-        <div class="card">
-          <h3>Sugar Rush Stripey Peach</h3>
-          <div class="species-tag">Capsicum baccatum</div>
-          <p>This sweet, fruity baccatum almost looks like something out of a candy store.</p>
-        </div>
+      <div class="pepper-card" data-species="annuum">
+        <a href="jalapeno-lmt.html" class="card-link">
+          <div class="card">
+            <h3>Jalapeño LMT (RHPP Patented)</h3>
+            <div class="species-tag">Capsicum annuum</div>
+            <div class="spice-meter">🌶🌶</div>
+            <p>A signature RHPP variety — this jalapeño has been engineered for supermarket-level size.</p>
+          </div>
+        </a>
       </div>
-    </div>
 
-    <div class="species-section">
-      <h2 class="species-heading">Capsicum frutescens</h2>
-      <p class="species-subtext">Small, productive peppers known for sharp heat and sauce-friendly pods.</p>
-
-      <div class="card-grid">
-        <div class="card">
-          <h3>Thai Chili</h3>
-          <div class="species-tag">Capsicum frutescens</div>
-          <p>Small, highly productive pepper with fast sharp heat and versatile kitchen use.</p>
-        </div>
-
-        <div class="card">
-          <h3>Tabasco</h3>
-          <div class="species-tag">Capsicum frutescens</div>
-          <p>Classic juicy upright pepper famous for it's namesake sauce and bright, vinegar-friendly heat.</p>
-        </div>
+      <div class="pepper-card" data-species="annuum">
+        <a href="poblano.html" class="card-link">
+          <div class="card">
+            <h3>Poblano</h3>
+            <div class="species-tag">Capsicum annuum</div>
+            <div class="spice-meter">🌶</div>
+            <p>Mild to spicy depending on the pod. This rich-flavored pepper is commonly known as ancho when dried.</p>
+          </div>
+        </a>
       </div>
-    </div>
 
+      <div class="pepper-card" data-species="annuum">
+        <a href="serrano.html" class="card-link">
+          <div class="card">
+            <h3>Serrano</h3>
+            <div class="species-tag">Capsicum annuum</div>
+            <div class="spice-meter">🌶🌶</div>
+            <p>Bright, crisp, and hotter than a jalapeño with excellent fresh flavor.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="annuum">
+        <a href="cayenne.html" class="card-link">
+          <div class="card">
+            <h3>Cayenne</h3>
+            <div class="species-tag">Capsicum annuum</div>
+            <div class="spice-meter">🌶🌶</div>
+            <p>Long, thin pepper known for sharp heat and excellent drying qualities. Popular as a powder.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="annuum">
+        <a href="california-wonder-sweet.html" class="card-link">
+          <div class="card">
+            <h3>California Wonder Sweet</h3>
+            <div class="species-tag">Capsicum annuum</div>
+            <div class="spice-meter">🌶</div>
+            <p>Classic sweet bell pepper with thick walls, crisp texture, and reliable yields.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="annuum">
+        <a href="red-marconi.html" class="card-link">
+          <div class="card">
+            <h3>Red Marconi</h3>
+            <div class="species-tag">Capsicum annuum</div>
+            <div class="spice-meter">🌶</div>
+            <p>Long Italian sweet pepper that is especially good for roasting and fresh eating.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="trinidad-perfume.html" class="card-link">
+          <div class="card">
+            <h3>Trinidad Perfume</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶</div>
+            <p>Highly aromatic chinense with habanero-like flavor and almost no heat.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="naga-bubblegum.html" class="card-link">
+          <div class="card">
+            <h3>Naga Bubblegum</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶🌶</div>
+            <p>Superhot pepper known for extreme heat and distinctive color bleeding into the stem.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="pimenta-da-dog.html" class="card-link">
+          <div class="card">
+            <h3>Pimenta da Dog</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶</div>
+            <p>Rare chinense type with distinctive pod shape and strong heat.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="hallows-eve.html" class="card-link">
+          <div class="card">
+            <h3>Hallow's Eve</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶🌶</div>
+            <p>Dark ornamental superhot with dramatic appearance and serious heat. As the name implies, this is a spooky pepper.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="red-habanero.html" class="card-link">
+          <div class="card">
+            <h3>Red Habanero</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶</div>
+            <p>Classic habanero with fruity flavor, strong heat, and heavy production.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="orange-habanero.html" class="card-link">
+          <div class="card">
+            <h3>Orange Habanero</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶</div>
+            <p>Bright citrusy flavor with the classic habanero burn.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="ghost.html" class="card-link">
+          <div class="card">
+            <h3>Ghost</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶🌶</div>
+            <p>Also known as Bhut Jolokia, this pepper originating from northern India was once crowned the hottest in the world.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="peach-ghost.html" class="card-link">
+          <div class="card">
+            <h3>Peach Ghost</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶🌶</div>
+            <p>Peach-colored ghost type with floral notes and strong superhot intensity.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="trinidad-moruga-scorpion.html" class="card-link">
+          <div class="card">
+            <h3>Trinidad Moruga Scorpion</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶🌶</div>
+            <p>A Caribbean landrace variety from the village of Moruga on the island of Trinidad, this heavy-hitting superhot packs brutal heat and fruity undertones.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="chinense">
+        <a href="armageddon.html" class="card-link">
+          <div class="card">
+            <h3>Armageddon</h3>
+            <div class="species-tag">Capsicum chinense</div>
+            <div class="spice-meter">🌶🌶🌶🌶</div>
+            <p>As the name implies, an extremely hot modern superhot bred out of the UK for aggressive heat and bold flavor. This was the first superhot grown at the RHPP farm.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="baccatum">
+        <a href="brazilian-starfish.html" class="card-link">
+          <div class="card">
+            <h3>Brazilian Starfish</h3>
+            <div class="species-tag">Capsicum baccatum</div>
+            <div class="spice-meter">🌶🌶</div>
+            <p>Beautiful winged pepper resembling a starfish. Fruity flavor and mild to medium heat.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="baccatum">
+        <a href="sugar-rush-stripey-peach.html" class="card-link">
+          <div class="card">
+            <h3>Sugar Rush Stripey Peach</h3>
+            <div class="species-tag">Capsicum baccatum</div>
+            <div class="spice-meter">🌶🌶</div>
+            <p>This sweet, fruity baccatum almost looks like something out of a candy store.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="frutescens">
+        <a href="thai-chili.html" class="card-link">
+          <div class="card">
+            <h3>Thai Chili</h3>
+            <div class="species-tag">Capsicum frutescens</div>
+            <div class="spice-meter">🌶🌶</div>
+            <p>Small, highly productive pepper with fast sharp heat and versatile kitchen use.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="pepper-card" data-species="frutescens">
+        <a href="tabasco.html" class="card-link">
+          <div class="card">
+            <h3>Tabasco</h3>
+            <div class="species-tag">Capsicum frutescens</div>
+            <div class="spice-meter">🌶🌶</div>
+            <p>Classic juicy upright pepper famous for its namesake sauce and bright, vinegar-friendly heat.</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
   </section>
 
   <footer>
     © 2026 Red Hot Philly Peppers
   </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.pepper-card');
+    const resultsLabel = document.getElementById('resultsLabel');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-species') === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (filter === 'all') {
+          resultsLabel.textContent = 'Showing all varieties';
+        } else {
+          resultsLabel.textContent = 'Showing ' + filter + ' varieties';
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
