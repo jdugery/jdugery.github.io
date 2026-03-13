@@ -7,42 +7,44 @@
 
 <style>
 * {
-box-sizing: border-box;
+box-sizing:border-box;
 }
 
-:root {
---bg: #0f1114;
---panel: #171a20;
---text: #f5f5f5;
---muted: #b7bcc6;
---border: #2a2f38;
---accent: #b22a21;
---accent-dark: #8d211a;
---accent-soft: #e45a4c;
---shadow: 0 18px 50px rgba(0,0,0,.35);
---radius-lg: 30px;
---max: 1180px;
+:root{
+--bg:#0f1114;
+--panel:#171a20;
+--text:#f5f5f5;
+--muted:#b7bcc6;
+--border:#2a2f38;
+--accent:#b22a21;
+--accent-dark:#8d211a;
+--accent-soft:#e45a4c;
+--shadow:0 18px 50px rgba(0,0,0,.35);
+--radius-lg:30px;
+--max:1180px;
 }
 
-body {
+body{
 margin:0;
-font-family: Georgia,"Times New Roman",serif;
+font-family:Georgia,"Times New Roman",serif;
 color:var(--text);
-background:#0f0f0f;
+line-height:1.6;
+background-color:#0f0f0f;
 position:relative;
 overflow-x:hidden;
 }
 
-/* pepper background */
+/* ORIGINAL PEPPER BACKGROUND */
 body::before{
 content:"";
 position:fixed;
 inset:0;
 pointer-events:none;
 opacity:.25;
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg transform='rotate(-28 110 110)'%3E%3Cpath d='M38 58c10-10 25-8 32-3 8 5 11 13 8 20-4 8-12 11-21 8-9-3-20-13-19-25z' fill='%232f8f46'/%3E%3Cpath d='M55 70c10-18 23-25 39-22 9 2 15 7 18 15 4 10 1 21-9 34-14 18-34 35-48 32-8-2-13-8-14-18-2-13 4-28 14-41z' fill='%23d62828'/%3E%3C/g%3E%3C/svg%3E");
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg transform='rotate(-28 110 110)'%3E%3Cpath d='M38 58c10-10 25-8 32-3 8 5 11 13 8 20-4 8-12 11-21 8-9-3-20-13-19-25z' fill='%232f8f46'/%3E%3Cpath d='M55 70c10-18 23-25 39-22 9 2 15 7 18 15 4 10 1 21-9 34-14 18-34 35-48 32-8-2-13-8-14-18-2-13 4-28 14-41z' fill='%23d62828'/%3E%3Cpath d='M148 126c8-8 20-6 26-2 6 4 8 11 5 16-3 6-9 8-17 6-8-2-16-10-14-20z' fill='%234a9f52'/%3E%3Cpath d='M162 135c8-14 18-20 30-18 7 1 12 5 14 11 3 8 1 17-7 27-11 15-27 28-38 26-6-1-10-6-11-14-1-11 3-23 12-32z' fill='%23f4b400'/%3E%3Cpath d='M108 170c8-8 20-6 26-2 6 4 8 11 5 16-3 6-9 8-17 6-8-2-16-10-14-20z' fill='%233d9448'/%3E%3Cpath d='M122 179c8-14 18-20 30-18 7 1 12 5 14 11 3 8 1 17-7 27-11 15-27 28-38 26-6-1-10-6-11-14-1-11 3-23 12-32z' fill='%23e76f51'/%3E%3C/g%3E%3C/svg%3E");
 background-size:220px 220px;
 background-repeat:repeat;
+background-position:0 0;
 z-index:0;
 }
 
@@ -125,7 +127,7 @@ color:var(--accent-soft);
 transform:scaleX(1);
 }
 
-/* CONTACT SECTION */
+/* CONTACT */
 
 .contact-wrapper{
 position:relative;
@@ -197,12 +199,11 @@ font-family:Arial,sans-serif;
 font-size:20px;
 font-weight:800;
 box-shadow:0 10px 24px rgba(163,38,29,.3);
-transition:transform .2s;
 }
 
 .email-link:hover{
-transform:translateY(-1px);
 background:linear-gradient(to bottom,#d63b2f,var(--accent-dark));
+transform:translateY(-1px);
 }
 
 .contact-note{
@@ -227,26 +228,6 @@ background:rgba(11,11,11,.55);
 backdrop-filter:blur(6px);
 }
 
-@media(max-width:700px){
-
-h1{
-font-size:40px;
-}
-
-.subtext{
-font-size:18px;
-}
-
-.email-link{
-font-size:16px;
-padding:12px 16px;
-}
-
-.nav-links{
-gap:12px;
-}
-
-}
 </style>
 </head>
 
