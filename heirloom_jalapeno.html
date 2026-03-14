@@ -313,12 +313,25 @@
       margin-top: 16px;
     }
 
-    .gallery-grid img {
+    .gallery-item {
+      cursor: pointer;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(228, 90, 76, 0.45);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+    }
+
+    .gallery-item img {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid var(--border);
     }
 
     .back-link {
@@ -332,6 +345,64 @@
 
     .back-link:hover {
       color: #ff9d9d;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.86);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+      z-index: 3000;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: min(1100px, 92vw);
+      max-height: 88vh;
+      width: auto;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(20, 20, 24, 0.92);
+      color: white;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .lightbox-close:hover {
+      background: rgba(40, 40, 46, 0.96);
     }
 
     footer {
@@ -386,6 +457,11 @@
       .gallery-grid,
       .info-grid {
         grid-template-columns: 1fr;
+      }
+
+      .lightbox-close {
+        top: 10px;
+        right: 10px;
       }
     }
   </style>
@@ -474,9 +550,15 @@
     <section class="card">
       <h2>Photo Gallery</h2>
       <div class="gallery-grid">
-        <img src="jalapenos.jpeg" alt="Heirloom Jalapeño photo 1">
-        <img src="jalapenos_2.jpeg" alt="Heirloom Jalapeño photo 2">
-        <img src="heirloom-jalapeno-3.jpg" alt="Heirloom Jalapeño photo 3">
+        <div class="gallery-item">
+          <img src="jalapenos.jpeg" alt="Heirloom Jalapeño photo 1">
+        </div>
+        <div class="gallery-item">
+          <img src="jalapenos_2.jpeg" alt="Heirloom Jalapeño photo 2">
+        </div>
+        <div class="gallery-item">
+          <img src="heirloom-jalapeno-3.jpg" alt="Heirloom Jalapeño photo 3">
+        </div>
       </div>
 
       <a href="varieties.html" class="back-link">← Back to all varieties</a>
@@ -487,6 +569,50 @@
   <footer>
     © 2026 Red Hot Philly Peppers
   </footer>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+      <img id="lightboxImage" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const galleryImages = document.querySelectorAll(".gallery-item img");
+
+    galleryImages.forEach((img) => {
+      img.addEventListener("click", () => {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightboxImage.src = "";
+      lightboxImage.alt = "";
+      document.body.style.overflow = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.classList.contains("open")) {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>
