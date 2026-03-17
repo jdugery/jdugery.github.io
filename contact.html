@@ -6,7 +6,7 @@
 <title>Contact | Red Hot Philly Peppers</title>
 
 <style>
-* {
+*{
 box-sizing:border-box;
 }
 
@@ -34,7 +34,8 @@ position:relative;
 overflow-x:hidden;
 }
 
-/* ORIGINAL PEPPER BACKGROUND */
+/* PEPPER BACKGROUND */
+
 body::before{
 content:"";
 position:fixed;
@@ -188,8 +189,11 @@ color:var(--muted);
 margin-bottom:14px;
 }
 
+/* EMAIL BUTTON */
+
 .email-link{
 display:inline-block;
+max-width:100%;
 padding:14px 24px;
 background:linear-gradient(to bottom,#c13228,var(--accent));
 color:white;
@@ -199,6 +203,8 @@ font-family:Arial,sans-serif;
 font-size:20px;
 font-weight:800;
 box-shadow:0 10px 24px rgba(163,38,29,.3);
+overflow-wrap:anywhere;
+word-break:break-word;
 }
 
 .email-link:hover{
@@ -210,6 +216,30 @@ transform:translateY(-1px);
 margin-top:18px;
 color:var(--muted);
 font-size:16px;
+}
+
+/* MOBILE FIX */
+
+@media (max-width:768px){
+
+.contact-card{
+padding:40px 24px;
+}
+
+h1{
+font-size:40px;
+}
+
+.subtext{
+font-size:18px;
+}
+
+.email-link{
+font-size:16px;
+padding:12px 18px;
+border-radius:18px;
+}
+
 }
 
 /* FOOTER */
@@ -235,6 +265,7 @@ backdrop-filter:blur(6px);
 
 <nav>
 <div class="nav-inner">
+
 <div class="brand">Red Hot Philly Peppers</div>
 
 <div class="nav-links">
@@ -244,6 +275,7 @@ backdrop-filter:blur(6px);
 <a href="about.html">About</a>
 <a href="contact.html" class="active">Contact</a>
 </div>
+
 </div>
 </nav>
 
@@ -266,10 +298,6 @@ Questions, comments, concerns:
 <a class="email-link" href="mailto:johnny@redhotphillypeppers.com">
 johnny@redhotphillypeppers.com
 </a>
-
-<div class="contact-note">
-
-</div>
 
 </div>
 
