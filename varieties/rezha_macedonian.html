@@ -145,42 +145,38 @@
     }
 
     .hero-main {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  min-height: 620px;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  padding: 70px 50px;
-  isolation: isolate;
-
-  background:
-    linear-gradient(
-      to right,
-      rgba(7,8,10,0.95) 0%,
-      rgba(7,8,10,0.85) 40%,
-      rgba(7,8,10,0.25) 60%,
-      rgba(7,8,10,0.0) 70%
-    ),
-    url("../images/rezha.png");
-
-  background-repeat: no-repeat;
-background-position: left center, 75% center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 70px 50px;
+      isolation: isolate;
+      background:
+        linear-gradient(
+          to right,
+          rgba(7,8,10,0.95) 0%,
+          rgba(7,8,10,0.85) 40%,
+          rgba(7,8,10,0.25) 60%,
+          rgba(7,8,10,0.0) 70%
+        ),
+        url("../images/rezha.png");
+      background-repeat: no-repeat;
+      background-position: left center, 75% center;
       background-size: auto, contain;
-}
+    }
 
     .hero-main::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to right, rgba(7,8,10,0.9) 0%, rgba(7,8,10,0.6) 35%, rgba(7,8,10,0.0) 60%);
-  z-index: 0;
-}
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(7,8,10,0.9) 0%, rgba(7,8,10,0.6) 35%, rgba(7,8,10,0.0) 60%);
+      z-index: 0;
+    }
 
     .hero-main::after {
       content: "";
@@ -244,6 +240,7 @@ background-position: left center, 75% center;
       grid-template-columns: 1.25fr 0.75fr;
       gap: 24px;
       margin-bottom: 24px;
+      align-items: start;
     }
 
     .card {
@@ -265,18 +262,22 @@ background-position: left center, 75% center;
       color: var(--muted);
     }
 
+    .top-grid aside.card {
+      height: fit-content;
+    }
+
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
       gap: 14px;
-      margin-top: 18px;
+      margin-top: 22px;
     }
 
     .info-item {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 12px;
-      padding: 12px;
+      padding: 14px 14px 13px;
     }
 
     .info-label {
@@ -293,6 +294,7 @@ background-position: left center, 75% center;
       font-size: 16px;
       color: white;
       font-weight: 600;
+      line-height: 1.4;
     }
 
     .heat-meter {
@@ -441,6 +443,10 @@ background-position: left center, 75% center;
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
       }
+
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 680px) {
@@ -460,7 +466,6 @@ background-position: left center, 75% center;
       .hero-main {
         min-height: 500px;
         padding: 40px 24px;
-        align-items: flex-end;
       }
 
       .hero h1 {
@@ -524,8 +529,17 @@ background-position: left center, 75% center;
         <p>
           The pods ripen from green to deep red and are valued for their rich, slightly sweet, earthy flavor with mild to medium heat. They are especially well suited for roasting, grilling, drying in strings, and grinding into flavorful pepper powder or flakes, making them both ornamental and highly useful in the kitchen.
         </p>
+      </section>
 
-       <div class="info-grid">
+      <aside class="card">
+        <h2>Heat</h2>
+        <div class="pepper-icons">🌶🌶</div>
+        <div class="heat-meter">
+          <div class="heat-fill"></div>
+        </div>
+        <div class="heat-label">1,000 - 8,000 SHU</div>
+
+        <div class="info-grid">
           <div class="info-item">
             <div class="info-label">Species</div>
             <div class="info-value">Capsicum annuum</div>
@@ -546,15 +560,6 @@ background-position: left center, 75% center;
             <div class="info-value">Roasting / Grilling / Drying / Powder</div>
           </div>
         </div>
-      </section>
-
-      <aside class="card">
-        <h2>Heat</h2>
-        <div class="pepper-icons">🌶🌶</div>
-        <div class="heat-meter">
-          <div class="heat-fill"></div>
-        </div>
-        <div class="heat-label">1,000 - 8,000 SHU</div>
       </aside>
     </div>
 
