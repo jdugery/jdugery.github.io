@@ -145,19 +145,33 @@
     }
 
     .hero-main {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      min-height: 620px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      padding: 70px 50px;
-      isolation: isolate;
-      background: url("../images/rezha.png") center center / cover no-repeat;
-    }
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  min-height: 620px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  padding: 70px 50px;
+  isolation: isolate;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(7,8,10,0.95) 0%,
+      rgba(7,8,10,0.85) 40%,
+      rgba(7,8,10,0.25) 60%,
+      rgba(7,8,10,0.0) 70%
+    ),
+    url("../images/rezha.png");
+
+  background-repeat: no-repeat;
+  background-position: left center, right center;
+  background-size: auto, contain;
+}
 
     .hero-main::before {
       content: "";
