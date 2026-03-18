@@ -235,26 +235,24 @@
       padding: 0 20px 80px;
     }
 
-    .details-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      grid-template-areas:
-        "info heat"
-        "stats stats";
-      gap: 24px;
-      margin-bottom: 24px;
-      align-items: start;
-    }
+  .details-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  grid-template-areas:
+    "info heat"
+    "stats stats";
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: stretch;
+}
 
-    .info-card {
-      grid-area: info;
-    }
-
-    .heat-card {
-      grid-area: heat;
-      height: fit-content;
-    }
-
+.heat-card {
+  grid-area: heat;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
     .stats-row {
       grid-area: stats;
       display: grid;
